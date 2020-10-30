@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}About{% endblock title %}
+
+{% block aboutactive %}active{% endblock aboutactive %}
+
+{% block body %}
+<div class="container my-0 p-5" style="font-family: 'Sansita Swashed', cursive;">
+    <h1 class="mx-3">Our Blog Editors.</h1>
+    <div class="card-deck my-3 p-3">
+        <div class="card border-info" style="height: 750px;background-color:#e9ecef;">
+                <img src="../../static/himanshu.jpg" class="card-img-top p-2" alt="..." style="height: 500px;">
+            <div class="card-body">
+                <h5 class="card-title">Himanshu Raj Verma</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta, fuga! Amet sunt nihil, distinctio quo tenetur error consequatur aut iste excepturi consequuntur adipisci harum reprehenderit ex, et voluptatem esse, ipsam quasi totam laboriosam nulla? Neque laborum dignissimos nulla illo facere?.</p>
+            </div>
+        </div>
+        <div class="card border-info" style="height: 750px;background-color:#e9ecef;">
+            <img src="../../static/vanshul.jpg" class="card-img-top p-2" alt="..." style="height: 500px;">
+          <div class="card-body">
+            <h5 class="card-title">Vanshul Kesharwani</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis doloremque maxime cum doloribus suscipit quaerat quod aut adipisci aspernatur excepturi voluptatum fugiat tempore reprehenderit inventore ipsum modi pariatur ea in, qui sed nesciunt temporibus quos nisi error. Vel, doloribus beatae.</p>
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock body %}

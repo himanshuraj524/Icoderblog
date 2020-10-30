@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}blog Home{% endblock title %}
+
+{% block blogactive %}active{% endblock blogactive %}
+
+{% block js %}
+<script>
+//This will convert all the content of preview from html to plain text
+    let previews = document.getElementsByClassName('preview');
+   Array.from(previews).forEach((element)=>{
+          element.innerHTML=element.innerText;
+      });
+</script>
+{% endblock js %}
+
+{% block body %}
+<div class="container my-4">
+    <h2 class="font-italic">Programming Articles by icoder.</h2>
+    {% for post in allposts %}
+    <div class="card flex-md-row mb-auto box-shadow h-md-250 my-4 post-relative" style="background-color:#e9ecef;">
+        <div class="card-body p-4 d-flex flex-column align-items-start">
+            <a href="/about"><strong class="d-inline-block mb-2 text-primary">Author:{{post.author}}</strong></a>
+            <h3 class="mb-2">
+                <a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a>
+            </h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <div class="preview">
+                <p class="card-text mb-auto">{{post.content|safe|truncatechars:300}}</p>
+            </div>
+            <a href="/blog/{{post.slug}}">Continue to post..</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

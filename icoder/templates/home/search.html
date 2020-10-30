@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block js %}
+<script>
+    //This will convert all the content of preview from html to plain text
+    let previews = document.getElementsByClassName('preview');
+   Array.from(previews).forEach((element)=>{
+          element.innerHTML=element.innerText;
+      });
+</script>
+{% endblock js %}
+
+{% block body %}
+<div class="container my-4">
+    <h3 class="text-uppercase">Search Results Found: {{searchcount}}</h3>
+    {% if allPost|length < 1 %}
+    <strong>Search not found.</strong>
+    <p>Your search query: <b> "{{query}}" </b>did not match any posts.</p>
+    <strong>Suggesstions:</strong>
+    <ul>
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try more general keywords.</li>
+        <li> Try fewer keywords.</li>
+        <li> Try different keywords.</li>
+    </ul>
+    {% endif %}
+    {% for post in allPost %}
+    <div class="card flex-md-row mb-auto box-shadow h-md-250 my-4 post-relative" style="background-color:#e9ecef;">
+        <div class="card-body p-4 d-flex flex-column align-items-start">
+            <a href="/blog/{{post.slug}}"><strong class="d-inline-block mb-2 text-primary">Author:{{post.author}}</strong></a>
+            <h3 class="mb-2">
+                <a class="text-dark" href="/blog/{{post.slug}}">{{post.title}}</a>
+            </h3>
+            <div class="mb-1 text-muted">{{post.timeStamp}}</div>
+            <div class="preview">
+                <p class="card-text mb-auto">{{post.content |safe|truncatechars:300}}</p>
+            </div>
+            <a href="/blog/{{post.slug}}">Continue to post..</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

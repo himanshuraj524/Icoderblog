@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block homeactive %}active{% endblock homeactive %}
+
+{% block js %}
+<script>
+    //This will convert all the content of preview from html to plain text
+    let previews = document.getElementsByClassName('preview');
+   Array.from(previews).forEach((element)=>{
+          element.innerHTML=element.innerText;
+      });
+</script>
+{% endblock js %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron my-4 p-5">
+        <h1 class="display-3 font-italic">Welcome to icoder!</h1>
+        <p class="lead">This is a programming blog post.</p>
+        <hr class="my-4">
+        <p>In the blogposts you will find some interesting information related to the programming technologies whcih are
+            evolving around the world.</p>
+        <a class="btn btn-primary btn-lg" href="/blog" role="button">Go to blog.</a>
+    </div>
+    <h2 class="font-italic">Popular Blogposts</h2>
+    {% for popular in popPost %}
+    <div class="card flex-md-row mb-4 box-shadow h-md-250 my-4 post-relative" style="background-color:#e9ecef;">
+        <div class="card-body p-4 d-flex flex-column align-items-start">
+            <a href="/about"><strong class="d-inline-block mb-2 text-primary">{{popular.author}}</strong></a>
+            <h3 class="mb-2">
+                <a class="text-dark" href="/blog/{{popular.slug}}">{{popular.title}}</a>
+            </h3>
+            <div class="mb-1 text-muted">{{popular.timeStamp}}</div>
+                <div class="preview">
+                    <p class="card-text mb-auto">{{popular.content|safe|truncatechars:300}}</p>
+                </div>
+            <a href="/blog/{{popular.slug}}">Continue to post..</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}
